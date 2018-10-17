@@ -37,7 +37,8 @@ jobs:
        command: |
          if [ "${CIRCLE_BRANCH}" == "master" ]; then
            echo $DOCKER_USER
-           docker login -u ${DOCKER_USER} --password ${DOCKER_PASS};
+           echo $DOCKER_PASS
+           docker login --user ${DOCKER_USER} --password ${DOCKER_PASS};
            go install --ldflags '-extldflags "-static"' \
            github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME};
            mkdir bin;
